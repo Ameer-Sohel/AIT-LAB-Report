@@ -1,0 +1,23 @@
+graph = {
+    'A': {'B': 2, 'D': 3},
+    'B': {'A': 1, 'C': 3},
+    'C': {'B': 5, 'D': 7},
+    'D': {'A': 4, 'C': 1}
+}
+
+print("Cost from A to B:", graph['A']['B'])
+print("Cost from B to C:", graph['B']['C'])
+print("Cost from C to D:", graph['C']['D'])
+print("Cost from D to A:", graph['D']['A'])
+
+total_cost = 0
+visited_edges = set()
+
+for node in graph:
+    for neighbor, cost in graph[node].items():
+        edge = tuple(sorted((node, neighbor)))
+        if edge not in visited_edges:
+            total_cost += cost
+            visited_edges.add(edge)
+
+print("Total cost:", total_cost)
